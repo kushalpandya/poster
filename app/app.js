@@ -8,3 +8,18 @@
  *
  * React App Entry-point
  */
+
+import React from "react";
+import ReactDOM from "react-dom";
+
+class App extends React.Component {
+    render() {
+        return (
+            <h1>Hello from React!</h1>
+        );
+    }
+}
+
+const appEl = document.getElementById('poster-app');
+
+ReactDOM.render(<App/>, appEl);
