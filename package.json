@@ -1,0 +1,24 @@
+{
+  "name": "poster",
+  "version": "0.1.0",
+  "description": "A React webapp to list upcoming movies and maintain a watchlist, powered by TMDb",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kushalpandya/poster.git"
+  },
+  "keywords": [
+    "react",
+    "webpack",
+    "tmdb"
+  ],
+  "author": "Kushal Pandya <kushalspandya@gmail.com> (https://doublslash.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kushalpandya/poster/issues"
+  },
+  "homepage": "https://github.com/kushalpandya/poster#readme"
+}
