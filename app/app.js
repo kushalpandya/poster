@@ -12,10 +12,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+
 class App extends React.Component {
     render() {
         return (
-            <h1>Hello from React!</h1>
+            <div>
+                <Header/>
+                <Footer/>
+            </div>
         );
     }
 }
