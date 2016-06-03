@@ -13,7 +13,7 @@ var webpack = require('webpack'),
     debug = process.env.NODE_ENV !== "production";
 
 module.exports = {
-    context: __dirname + "/app",
+    context: __dirname + "/client/app",
     devtool: debug ? "inline-sourcemap" : null,
     entry: "./app.js",
     module: {
@@ -38,7 +38,7 @@ module.exports = {
         ]
     },
     output: {
-        path: __dirname + "/app",
+        path: __dirname + "/public/dist",
         filename: "app.min.js"
     },
     plugins: debug ? [] : [
