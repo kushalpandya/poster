@@ -19,10 +19,10 @@ module.exports = function(grunt) {
         sassDirConfig;
 
     directories = {
-        imagesDir: "app/assets/img/source",
-        generatedImagesDir: "app/assets/img/dist",
-        sassDir: "app/assets/scss",
-        cssDir: "app/assets/css"
+        imagesDir: "client/app/assets/images",
+        generatedImagesDir: "public/dist/assets/images",
+        sassDir: "client/app/assets/scss",
+        cssDir: "public/dist/assets/css"
     };
 
     sassDirConfig = {
@@ -61,20 +61,23 @@ module.exports = function(grunt) {
         // Task : grunt-contrib-watch
         // Watch for File Changes Config
         watch: {
-            source: {
+            full: {
                 files: [
-                    'app/assets/scss/**/*.{scss,sass}',
-                    'app/**/*.js',
-                    '*.html'
+                    'client/app/assets/scss/**/*.{scss,sass}',
+                    'client/app/**/*.js'
                 ],
                 tasks: [
                     'sass:dev',
                     'shell:webpackBuild'
-                ],
-                options: {
-                    interrupt: true,
-                    atBegin: true
-                }
+                ]
+            },
+            sass: {
+                files: [ 'client/app/assets/scss/**/*.{scss,sass}' ],
+                tasks: [ 'sass:dev' ]
+            },
+            options: {
+                interrupt: true,
+                atBegin: true
             }
         },
 
@@ -82,7 +85,7 @@ module.exports = function(grunt) {
         // Concurrent Grunt Tasks Runner Config
         concurrent: {
             serve: [
-                'watch',
+                'watch:sass',
                 'shell:webpackServe'
             ],
             options: {
@@ -94,7 +97,7 @@ module.exports = function(grunt) {
         // Directory Clean-up Config
         clean: {
             css: [
-                '!' + directories.cssDir + '/vendor/*.css',
+                '!' + directories.cssDir + '/static/*.css',
                 directories.cssDir + '/*.css'
             ],
             images: [directories.generatedImagesDir + '/*']
