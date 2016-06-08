@@ -10,10 +10,11 @@
  */
 
 var webpack = require('webpack'),
+    path = require('path'),
     debug = process.env.NODE_ENV !== "production";
 
 module.exports = {
-    context: __dirname + "/client/app",
+    context: path.resolve(__dirname, "app"),
     devtool: debug ? "inline-sourcemap" : null,
     entry: "./app.js",
     module: {
@@ -38,8 +39,9 @@ module.exports = {
         ]
     },
     output: {
-        path: __dirname + "/public/dist",
-        filename: "app.min.js"
+        path: path.resolve(__dirname, "dist"),
+        publicPath: "dist/",
+        filename: "bundle.min.js"
     },
     plugins: debug ? [] : [
         new webpack.optimize.DedupePlugin(),
