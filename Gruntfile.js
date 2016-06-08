@@ -19,10 +19,10 @@ module.exports = function(grunt) {
         sassDirConfig;
 
     directories = {
-        imagesDir: "client/app/assets/images",
-        generatedImagesDir: "public/dist/assets/images",
-        sassDir: "client/app/assets/scss",
-        cssDir: "public/dist/assets/css"
+        imagesDir: "app/assets/images",
+        generatedImagesDir: "dist/assets/images",
+        sassDir: "app/assets/scss",
+        cssDir: "dist/assets/css"
     };
 
     sassDirConfig = {
@@ -51,10 +51,10 @@ module.exports = function(grunt) {
         // Jekyll Shell Commands Config
         shell: {
             webpackBuild: {
-                command: 'npm run build'
+                command: 'npm run webpackbuild'
             },
             webpackServe: {
-                command: 'npm run devserve'
+                command: 'npm run webpackserve'
             }
         },
 
@@ -63,8 +63,8 @@ module.exports = function(grunt) {
         watch: {
             full: {
                 files: [
-                    'client/app/assets/scss/**/*.{scss,sass}',
-                    'client/app/**/*.js'
+                    'app/assets/scss/**/*.{scss,sass}',
+                    'app/**/*.js'
                 ],
                 tasks: [
                     'sass:dev',
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
                 ]
             },
             sass: {
-                files: [ 'client/app/assets/scss/**/*.{scss,sass}' ],
+                files: [ 'app/assets/scss/**/*.{scss,sass}' ],
                 tasks: [ 'sass:dev' ]
             },
             options: {
