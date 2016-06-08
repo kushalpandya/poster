@@ -8,3 +8,16 @@
  *
  * Main Poster Stylesheet
  */
+
+.navbar-default {
+    background-color: #77b3d4;
+
+    .navbar-brand {
+        color: #FFFFFF;
+        font-weight: bold;
+
+        &:hover {
+            color: darken(#FFFFFF, 10%);
+        }
+    }
+}
