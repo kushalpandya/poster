@@ -34,5 +34,4 @@ node_modules
 
 # Custom Ignores
 *.map
-public/dist/*.js
-public/dist/assets/css/*.css
+dist/
