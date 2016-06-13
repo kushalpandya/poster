@@ -21,7 +21,7 @@ class Header extends React.Component {
 
     render() {
         return (
-            <header>
+            <header class="poster-header">
                 <Nav/>
             </header>
         );
