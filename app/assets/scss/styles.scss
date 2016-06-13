@@ -9,33 +9,52 @@
  * Main Poster Stylesheet
  */
 
-header {
+.poster-header {
     height: 64px;
-}
 
-.navbar-default {
-    background-color: #77b3d4;
+    .navbar-default {
+        background-color: #77b3d4;
 
-    .navbar-brand {
-        color: #FFFFFF;
-        font-weight: bold;
+        .navbar-brand {
+            color: #FFFFFF;
+            font-weight: bold;
 
-        &:hover {
-            color: darken(#FFFFFF, 10%);
+            &:hover {
+                color: darken(#FFFFFF, 10%);
+            }
+        }
+
+        .navbar-collapse {
+
+            li > a {
+                &,
+                &:focus {
+                    color: #FFFFFF;
+                }
+
+                &.active {
+                    background: darken(#77B3D4, 20%);
+                }
+            }
         }
     }
+}
 
-    .navbar-collapse {
+.poster-footer {
+    padding: 4rem 0;
+    margin-top: 200px;
+    color: #FFFFFF;
+    background-color: #4f5d73;
+    box-shadow: 0 2px 6px darken(#4F5D73, 20%) inset;
+}
 
-        li > a {
-            &,
-            &:focus {
-                color: #FFFFFF;
-            }
+.poster-section {
 
-            &.active {
-                background: darken(#77B3D4, 20%);
-            }
+    .jumbotron {
+        margin-top: 10px;
+
+        h2, p {
+            text-align: center;
         }
     }
 }
