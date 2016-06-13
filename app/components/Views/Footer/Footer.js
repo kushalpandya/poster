@@ -19,7 +19,12 @@ class Footer extends React.Component {
 
     render() {
         return (
-            <footer>This is from footer</footer>
+            <footer class="poster-footer">
+                <div class="container">
+                    <p class="pull-left">Designed and built by <a href="https://doublslash.com" target="_blank">@kushalpandya</a></p>
+                    <p class="pull-right">Source available on <a href="https://github.com/kushalpandya/poster" target="_blank">GitHub</a></p>
+                </div>
+            </footer>
         );
     }
 }
