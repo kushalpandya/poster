@@ -22,6 +22,7 @@ class NavbarLinks extends React.Component {
     render() {
         return (
             <ul class="nav navbar-nav">
+                <NavbarLinkItem linkTitle="Top 20"/>
                 <NavbarLinkItem linkTitle="Upcoming Movies"/>
                 <NavbarLinkItem linkTitle="Watchlist"/>
             </ul>
