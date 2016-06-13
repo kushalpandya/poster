@@ -20,4 +20,11 @@
             color: darken(#FFFFFF, 10%);
         }
     }
+
+    .navbar-collapse {
+
+        li > a {
+            color: #FFFFFF;
+        }
+    }
 }
