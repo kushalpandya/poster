@@ -31,7 +31,8 @@ class Nav extends React.Component {
                          style={{
                              marginTop: '7px',
                              paddingRight: '10px'
-                         }}/>
+                         }}
+                    />
                     <NavbarHeader/>
                     <div class="collapse navbar-collapse">
                         <NavbarLinks/>
