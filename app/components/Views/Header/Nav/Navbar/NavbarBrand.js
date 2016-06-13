@@ -10,6 +10,7 @@
  */
 
 import React from "react";
+import { IndexLink } from "react-router";
 
 export default
 class NavbarBrand extends React.Component {
@@ -19,7 +20,7 @@ class NavbarBrand extends React.Component {
 
     render() {
         return (
-            <a class="navbar-brand" href="/">Poster</a>
+            <IndexLink class="navbar-brand" to="/">Poster</IndexLink>
         );
     }
 }
