@@ -9,6 +9,10 @@
  * Main Poster Stylesheet
  */
 
+header {
+    height: 64px;
+}
+
 .navbar-default {
     background-color: #77b3d4;
 
@@ -24,7 +28,14 @@
     .navbar-collapse {
 
         li > a {
-            color: #FFFFFF;
+            &,
+            &:focus {
+                color: #FFFFFF;
+            }
+
+            &.active {
+                background: darken(#77B3D4, 20%);
+            }
         }
     }
 }
