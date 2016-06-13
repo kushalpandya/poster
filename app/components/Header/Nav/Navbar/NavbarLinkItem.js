@@ -10,6 +10,7 @@
  */
 
 import React from "react";
+import { Link } from "react-router";
 
 export default
 class NavbarLinkItem extends React.Component {
@@ -20,7 +21,7 @@ class NavbarLinkItem extends React.Component {
     render() {
         return (
             <li>
-                <a href="#">{this.props.linkTitle}</a>
+                <Link to={this.props.linkPath} activeClassName="active">{this.props.linkTitle}</Link>
             </li>
         );
     }
