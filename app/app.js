@@ -19,16 +19,16 @@ import { Router, Route, IndexRoute, hashHistory } from "react-router";
 /*
  * Persistent Page Components
  */
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
+import Header from "./components/Views/Header/Header";
+import Footer from "./components/Views/Footer/Footer";
 
 /*
  * Dynamic Page Components
  */
-import Home from "./components/Section/Home/Home";
-import TopRated from "./components/Section/TopRated/TopRated";
-import Upcoming from "./components/Section/Upcoming/Upcoming";
-import Watchlist from "./components/Section/Watchlist/Watchlist";
+import Home from "./components/Views/Section/Home/Home";
+import TopRated from "./components/Views/Section/TopRated/TopRated";
+import Upcoming from "./components/Views/Section/Upcoming/Upcoming";
+import Watchlist from "./components/Views/Section/Watchlist/Watchlist";
 
 export default
 class App extends React.Component {
