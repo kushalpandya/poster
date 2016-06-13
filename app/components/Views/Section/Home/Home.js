@@ -11,17 +11,22 @@
 
 import React from "react";
 
+import SearchBox from "./SearchBox";
+
 export default
 class Home extends React.Component {
     constructor() {
         super();
     }
-    
+
     render() {
-        console.log("from Home", this);
         return (
-            <section class="container">
-                <h2>This is Homepage!</h2>
+            <section class="container poster-section home-section">
+                <div class="jumbotron">
+                    <h2>Welcome to Poster!</h2>
+                    <p>A minimalist Movies catelog, powered by <a href="https://www.themoviedb.org" target="_blank">TMDb</a>.</p>
+                    <SearchBox/>
+                </div>
             </section>
         );
     }
