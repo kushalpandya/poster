@@ -10,17 +10,26 @@
  */
 
 import React from "react";
+import HTTP from "superagent";
+
+import LoadingMessage from "../Shared/LoadingMessage";
 
 export default
 class Watchlist extends React.Component {
     constructor() {
         super();
+        this.state = {
+            loadCompleted: false
+        };
     }
 
     render() {
         return (
-            <section class="container">
-                <h2>This is Watchlist!</h2>
+            <section class="container poster-section watchlist-section">
+                <LoadingMessage
+                    loadCompleted={this.state.loadCompleted}
+                    loadMessage="Loading your watchlist..."
+                />
             </section>
         );
     }
