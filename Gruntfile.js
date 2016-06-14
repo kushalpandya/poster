@@ -19,9 +19,9 @@ module.exports = function(grunt) {
         sassDirConfig;
 
     directories = {
-        imagesDir: "app/assets/images",
+        imagesDir: "assets/images",
         generatedImagesDir: "dist/assets/images",
-        sassDir: "app/assets/scss",
+        sassDir: "assets/scss",
         cssDir: "dist/assets/css"
     };
 
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
         watch: {
             full: {
                 files: [
-                    'app/assets/scss/**/*.{scss,sass}',
+                    'assets/scss/**/*.{scss,sass}',
                     'app/**/*.js'
                 ],
                 tasks: [
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
                 ]
             },
             sass: {
-                files: [ 'app/assets/scss/**/*.{scss,sass}' ],
+                files: [ 'assets/scss/**/*.{scss,sass}' ],
                 tasks: [ 'sass:dev' ]
             },
             options: {
