@@ -20,17 +20,17 @@ class Nav extends React.Component {
         super();
 
         this.state = {
-            collapse: true
+            menuCollapsed: true
         };
     }
 
-    toggleCollapse(collapse) {
-        this.setState({collapse});
+    toggleCollapse() {
+        this.setState({
+            menuCollapsed: !this.state.menuCollapsed
+        });
     }
 
     render() {
-        const navClass = this.state.collapse ? 'collapse' : '';
-
         return (
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container-fluid">
@@ -44,7 +44,7 @@ class Nav extends React.Component {
                          }}
                     />
                     <NavbarHeader toggleCollapse={this.toggleCollapse.bind(this)}/>
-                    <div class={"navbar-collapse " + navClass}>
+                    <div class={"navbar-collapse " + (this.state.menuCollapsed ? 'collapse' : '')}>
                         <NavbarLinks/>
                     </div>
                 </div>
