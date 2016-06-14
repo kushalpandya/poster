@@ -23,7 +23,7 @@ class NavbarHeader extends React.Component {
     render() {
         return (
             <div class="navbar-header">
-                <NavbarToggle/>
+                <NavbarToggle toggleCollapse={this.props.toggleCollapse}/>
                 <NavbarBrand/>
             </div>
         );

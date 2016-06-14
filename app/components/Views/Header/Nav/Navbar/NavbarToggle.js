@@ -15,11 +15,28 @@ export default
 class NavbarToggle extends React.Component {
     constructor() {
         super();
+
+        this.state = {
+            collapse: true
+        };
+    }
+
+    handleOnClick() {
+        this.props.toggleCollapse(!this.state.collapse);
+        this.setState({
+            collapse: !this.state.collapse
+        });
     }
 
     render() {
         return (
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button
+                    aria-expanded="false"
+                    class="navbar-toggle collapsed"
+                    data-target="#bs-example-navbar-collapse-1"
+                    data-toggle="collapse"
+                    type="button"
+                    onClick={this.handleOnClick.bind(this)}>
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>

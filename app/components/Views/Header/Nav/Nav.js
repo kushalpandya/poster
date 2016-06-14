@@ -18,9 +18,19 @@ export default
 class Nav extends React.Component {
     constructor() {
         super();
+
+        this.state = {
+            collapse: true
+        };
+    }
+
+    toggleCollapse(collapse) {
+        this.setState({collapse});
     }
 
     render() {
+        const navClass = this.state.collapse ? 'collapse' : '';
+
         return (
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container-fluid">
@@ -33,8 +43,8 @@ class Nav extends React.Component {
                              paddingRight: '10px'
                          }}
                     />
-                    <NavbarHeader/>
-                    <div class="collapse navbar-collapse">
+                    <NavbarHeader toggleCollapse={this.toggleCollapse.bind(this)}/>
+                    <div class={"navbar-collapse " + navClass}>
                         <NavbarLinks/>
                     </div>
                 </div>
