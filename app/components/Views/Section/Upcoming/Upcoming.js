@@ -10,17 +10,56 @@
  */
 
 import React from "react";
+import HTTP from "superagent";
+
+import LoadingMessage from "../Shared/LoadingMessage";
 
 export default
 class Upcoming extends React.Component {
+    baseURL = "http://localhost:9000/api";
+
     constructor() {
         super();
+        this.state = {
+            movies: [],
+            loadCompleted: false
+        }
+    }
+
+    componentWillMount() {
+        this.request = HTTP.get(`${this.baseURL}/movie/upcoming`).end((err, res) => {
+            if (err || !res.ok)
+                console.log("Something went wrong", err);
+            else
+            {
+                this.setState({
+                    loadCompleted: true,
+                    movies: res.body.results
+                })
+            }
+        });
+    }
+
+    componentWillUnmount() {
+        this.request.abort();
     }
 
     render() {
         return (
-            <section class="container">
-                <h2>This is Upcoming Movies!</h2>
+            <section class="container poster-section upcoming-section">
+                <LoadingMessage
+                    loadCompleted={this.state.loadCompleted}
+                    loadMessage="Loading upcoming movies..."
+                />
+                <ul>
+                    {
+                        this.state.movies.map((movie, i) => {
+                            return (
+                                <li key={movie.id}>{movie.original_title}</li>
+                            );
+                        })
+                    }
+                </ul>
             </section>
         );
     }

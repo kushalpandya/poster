@@ -10,17 +10,60 @@
  */
 
 import React from "react";
+import HTTP from "superagent";
+
+import LoadingMessage from "../Shared/LoadingMessage";
 
 export default
 class TopRated extends React.Component {
+    baseURL = "http://localhost:9000/api";
+
     constructor() {
         super();
+        this.state = {
+            movies: [],
+            loadCompleted: false
+        }
     }
-    
+
+    componentWillMount() {
+        this.request = HTTP.get(`${this.baseURL}/movie/top_rated`).end((err, res) => {
+            if (err || !res.ok)
+                console.log("Something went wrong", err);
+            else
+            {
+                this.setState({
+                    loadCompleted: true,
+                    movies: res.body.results
+                })
+            }
+        });
+    }
+
+    loadSectionData() {
+
+    }
+
+    componentWillUnmount() {
+        this.request.abort();
+    }
+
     render() {
         return (
-            <section class="container">
-                <h2>This is Top 20!</h2>
+            <section class="container poster-section top-rated-section">
+                <LoadingMessage
+                    loadCompleted={this.state.loadCompleted}
+                    loadMessage="Loading top rated movies..."
+                />
+                <ul>
+                    {
+                        this.state.movies.map((movie, i) => {
+                            return (
+                                <li key={movie.id}>{movie.original_title}</li>
+                            );
+                        })
+                    }
+                </ul>
             </section>
         );
     }
