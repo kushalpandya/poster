@@ -58,3 +58,14 @@
         }
     }
 }
+
+@media (max-width:768px) {
+
+    .poster-footer {
+
+        .container > p {
+            float: none !important;
+            text-align: center;
+        }
+    }
+}
