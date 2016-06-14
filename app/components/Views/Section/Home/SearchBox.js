@@ -19,12 +19,12 @@ class SearchBox extends React.Component {
 
     render() {
         return (
-            <div class="input-group">
+            <form class="input-group">
                 <input type="text" class="form-control" placeholder="Search movies or people..." />
                 <span class="input-group-btn">
-                    <button class="btn btn-default glyphicon glyphicon-search" type="button"></button>
+                    <button class="btn btn-default glyphicon glyphicon-search" type="submit"></button>
                 </span>
-            </div>
+            </form>
         );
     }
 }
