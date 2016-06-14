@@ -15,17 +15,10 @@ export default
 class NavbarToggle extends React.Component {
     constructor() {
         super();
-
-        this.state = {
-            collapse: true
-        };
     }
 
     handleOnClick() {
-        this.props.toggleCollapse(!this.state.collapse);
-        this.setState({
-            collapse: !this.state.collapse
-        });
+        this.props.toggleCollapse();
     }
 
     render() {
