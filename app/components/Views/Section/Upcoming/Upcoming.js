@@ -13,6 +13,7 @@ import React from "react";
 import HTTP from "superagent";
 
 import LoadingMessage from "../Shared/LoadingMessage";
+import MovieCard from "../Shared/MovieCard";
 
 export default
 class Upcoming extends React.Component {
@@ -51,15 +52,15 @@ class Upcoming extends React.Component {
                     loadCompleted={this.state.loadCompleted}
                     loadMessage="Loading upcoming movies..."
                 />
-                <ul>
+                <div class="movies-list">
                     {
                         this.state.movies.map((movie, i) => {
                             return (
-                                <li key={movie.id}>{movie.original_title}</li>
+                                <MovieCard key={movie.id} movie={movie} />
                             );
                         })
                     }
-                </ul>
+                </div>
             </section>
         );
     }
