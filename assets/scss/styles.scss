@@ -9,6 +9,15 @@
  * Main Poster Stylesheet
  */
 
+ html {
+    position: relative;
+ 	min-height: 100%;
+ }
+
+ body {
+     margin: 0 0 120px;
+ }
+
 .poster-header {
     height: 64px;
 
@@ -41,14 +50,25 @@
 }
 
 .poster-footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 120px;
+    width: 100%;
     padding: 4rem 0;
-    margin-top: 200px;
+    margin-top: 100px;
     color: #FFFFFF;
     background-color: #4f5d73;
     box-shadow: 0 2px 6px darken(#4F5D73, 20%) inset;
 }
 
 .poster-section {
+
+    &:after {
+        content: "";
+        display: block;
+        height: 120px;
+    }
 
     .jumbotron {
         margin-top: 10px;
@@ -69,6 +89,85 @@
         h5 {
             text-align: center;
             font-style: italic;
+        }
+    }
+}
+
+.poster-section {
+
+    .movies-list {
+        margin: auto;
+        margin-top: 30px;
+        width: 80%;
+
+        &:after {
+            content: " ";
+    		display: block;
+    		height: 0;
+    		clear: both;
+        }
+
+        .movie-item {
+            margin: 50px 5px 0 5px;
+            width: 45%;
+            background-color: #fff;
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);
+
+            .movie-banner {
+                position: relative;
+
+                .movie-backdrop {
+                    overflow: hidden;
+                    background-color: rgba(0,0,0,0.5);
+
+                    img {
+                        height: 280px;
+                        width: 100%;
+                        -webkit-filter: blur(2px);
+                                filter: blur(2px);
+                    }
+                }
+
+                .movie-poster {
+                    position: absolute;
+                    top: 30px;
+                    left: 30px;
+                    width: 150px;
+                    height: 220px;
+                    border: 3px solid #FFFFFF;
+                }
+            }
+
+            .movie-meta {
+                padding: 15px;
+
+                hr {
+                    margin: 15px auto 15px auto;
+                }
+
+                .title {
+                    margin: 0;
+                }
+
+                .overview {
+                    display: -webkit-box;
+                    height: 70px;
+                    overflow: hidden;
+                    font-size: 14px;
+                    text-overflow: ellipsis;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                }
+            }
+
+            &:nth-child(odd) {
+                float: left;
+                clear: right;
+            }
+
+            &:nth-child(even) {
+                float: right;
+            }
         }
     }
 }
