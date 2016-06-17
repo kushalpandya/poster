@@ -6,5 +6,22 @@
  * Date: 17 June, 2016
  * License: MIT
  *
- * Section > * -> [ MovieDetailModal ]
+ * Section > * -> [ MovieDetail ]
  */
+
+import React from "react";
+
+export default
+class MovieDetail extends React.Component {
+    constructor() {
+        super();
+    }
+
+    render() {
+        return (
+            <section class="container poster-section movie-details-section">
+                <h1>This is Movie Detail</h1>
+            </section>
+        );
+    }
+}
