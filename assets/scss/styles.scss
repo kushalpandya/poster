@@ -108,20 +108,26 @@
         }
 
         .movie-item {
-            margin: 50px 5px 0 5px;
+            margin: 20px 5px 0 5px;
             width: 45%;
             background-color: #fff;
             box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);
 
+            &:nth-child(n+3) {
+                margin-top: 80px;
+            }
+
             .movie-banner {
                 position: relative;
+                height: 280px;
 
                 .movie-backdrop {
                     overflow: hidden;
+                    height: 100%;
                     background-color: rgba(0,0,0,0.5);
 
                     img {
-                        height: 280px;
+                        height: 100%;
                         width: 100%;
                         -webkit-filter: blur(2px);
                                 filter: blur(2px);
