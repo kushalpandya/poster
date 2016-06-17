@@ -47,6 +47,17 @@ module.exports = function(grunt) {
         // Associated Package.
         pkg: grunt.file.readJSON('package.json'),
 
+        // Task: grunt-env
+        // Grunt Env configuration that Webpack can use perform builds.
+        env: {
+            dev: {
+                NODE_ENV: 'development'
+            },
+            dist: {
+                NODE_ENV: 'production'
+            }
+        },
+
         // Task : grunt-shell
         // Jekyll Shell Commands Config
         shell: {
@@ -152,13 +163,15 @@ module.exports = function(grunt) {
 
     /**
      * Build task.
-     * 1) runs Clean to delete generated CSS files.
-     * 2) runs Clean to delete generated Images.
-     * 3) runs SASS distributable build.
-     * 4) runs Image Minification.
-     * 4) runs Webpack Build.
+     * 1) Configure NODE_ENV for production.
+     * 2) runs Clean to delete generated CSS files.
+     * 3) runs Clean to delete generated Images.
+     * 4) runs SASS distributable build.
+     * 5) runs Image Minification.
+     * 6) runs Webpack Build.
      */
     grunt.registerTask('build', [
+        'env:dist',
         'clean:css',
         'clean:images',
         'sass:dist',
@@ -168,7 +181,8 @@ module.exports = function(grunt) {
 
     /**
 	 * Serve task.
-     * 1) runs Serve task within Concurrent.
+     * 1) Configure NODE_ENV for development.
+     * 2) runs Serve task within Concurrent.
 	 *     a) runs Watch for several files (see Watch task above) for changes.
      *     b) runs Webpack Dev Server at 0.0.0.0:8080
      *
@@ -177,6 +191,7 @@ module.exports = function(grunt) {
      * 2) runs Webpack Dev Server hot-reloads any changed modules.
 	 */
     grunt.registerTask('serve', [
+        'env:dev',
         'concurrent:serve'
     ]);
 };
