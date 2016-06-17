@@ -41,10 +41,6 @@ class TopRated extends React.Component {
         });
     }
 
-    loadSectionData() {
-
-    }
-
     componentWillUnmount() {
         this.request.abort();
     }
