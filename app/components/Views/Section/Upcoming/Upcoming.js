@@ -12,7 +12,7 @@
 import React from "react";
 import HTTP from "superagent";
 
-import LoadingMessage from "../../../Widgets/LoadingAnimation";
+import LoadingAnimation from "../../../Widgets/LoadingAnimation";
 
 import MovieCardList from "../Shared/MovieCardList";
 import MovieCard from "../Shared/MovieCard";
@@ -50,11 +50,14 @@ class Upcoming extends React.Component {
     render() {
         return (
             <section class="container poster-section upcoming-section">
-                <LoadingMessage
-                    loadCompleted={this.state.loadCompleted}
+                <LoadingAnimation
+                    visible={!this.state.loadCompleted}
                     loadMessage="Loading upcoming movies..."
                 />
-                <MovieCardList movies={this.state.movies} />
+                <MovieCardList
+                    movies={this.state.movies}
+                    visible={this.state.loadCompleted}
+                />
             </section>
         );
     }

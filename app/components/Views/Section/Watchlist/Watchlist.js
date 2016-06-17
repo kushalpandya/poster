@@ -12,7 +12,7 @@
 import React from "react";
 import HTTP from "superagent";
 
-import LoadingMessage from "../../../Widgets/LoadingAnimation";
+import LoadingAnimation from "../../../Widgets/LoadingAnimation";
 
 export default
 class Watchlist extends React.Component {
@@ -26,8 +26,8 @@ class Watchlist extends React.Component {
     render() {
         return (
             <section class="container poster-section watchlist-section">
-                <LoadingMessage
-                    loadCompleted={this.state.loadCompleted}
+                <LoadingAnimation
+                    visible={!this.state.loadCompleted}
                     loadMessage="Loading your watchlist..."
                 />
             </section>
