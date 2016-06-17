@@ -10,26 +10,39 @@
  */
 
 import React from "react";
+import { Link } from "react-router";
 
 export default
 class MovieCard extends React.Component {
+    noPosterImage = "dist/assets/images/no_poster.png";
+
     constructor() {
         super();
     }
 
     render() {
         const movie = this.props.movie;
+        const bannerColor = {
+            backgroundColor: movie.backdrop_color
+        };
 
         return (
             <div class="movie-item">
                 <div class="movie-banner">
-                    <div class="movie-backdrop">
-                        <img src={movie.backdrop_path.small}/>
+                    <div class="movie-backdrop" style={ bannerColor }>
+                        {(() => {
+                            if (movie.backdrop_path.small)
+                                return (
+                                    <img src={movie.backdrop_path.small}/>
+                                );
+                        })()}
                     </div>
-                    <img class="movie-poster" src={movie.poster_path.small}/>
+                    <img class="movie-poster" src={movie.poster_path.small || this.noPosterImage}/>
                 </div>
                 <div class="movie-meta">
-                    <h4 class="title">{movie.title}</h4>
+                    <Link to={`/movie/${movie.id}`}>
+                        <h4 class="title">{movie.title}</h4>
+                    </Link>
                     <hr/>
                     <div class="genre-list">
                         {/*{
