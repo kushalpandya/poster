@@ -11,7 +11,7 @@
 
 import React from "react";
 
-import SearchBox from "./SearchBox";
+import SearchBox from "../Shared/SearchBox";
 
 export default
 class Home extends React.Component {
