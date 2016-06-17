@@ -13,6 +13,7 @@ import React from "react";
 import HTTP from "superagent";
 
 import LoadingMessage from "../Shared/LoadingMessage";
+import MovieCardList from "../Shared/MovieCardList";
 import MovieCard from "../Shared/MovieCard";
 
 export default
@@ -52,15 +53,7 @@ class TopRated extends React.Component {
                     loadCompleted={this.state.loadCompleted}
                     loadMessage="Loading top rated movies..."
                 />
-                <div class="movies-list">
-                    {
-                        this.state.movies.map((movie, i) => {
-                            return (
-                                <MovieCard key={movie.id} movie={movie} />
-                            );
-                        })
-                    }
-                </div>
+                <MovieCardList movies={this.state.movies} />
             </section>
         );
     }
