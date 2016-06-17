@@ -21,7 +21,7 @@ class MovieCardList extends React.Component {
 
     render() {
         return (
-            <div class="movies-list">
+            <div class={"movies-list " + (this.props.visible ? '' : 'hidden')}>
                 {
                     this.props.movies.map((movie, i) => {
                         return (
