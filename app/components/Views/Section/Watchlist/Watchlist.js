@@ -12,7 +12,7 @@
 import React from "react";
 import HTTP from "superagent";
 
-import LoadingMessage from "../Shared/LoadingMessage";
+import LoadingMessage from "../../../Widgets/LoadingAnimation";
 
 export default
 class Watchlist extends React.Component {

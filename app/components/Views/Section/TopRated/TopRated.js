@@ -12,7 +12,8 @@
 import React from "react";
 import HTTP from "superagent";
 
-import LoadingMessage from "../Shared/LoadingMessage";
+import LoadingMessage from "../../../Widgets/LoadingAnimation";
+
 import MovieCardList from "../Shared/MovieCardList";
 import MovieCard from "../Shared/MovieCard";
 
