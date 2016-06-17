@@ -29,6 +29,7 @@ import Home from "./components/Views/Section/Home/Home";
 import TopRated from "./components/Views/Section/TopRated/TopRated";
 import Upcoming from "./components/Views/Section/Upcoming/Upcoming";
 import Watchlist from "./components/Views/Section/Watchlist/Watchlist";
+import MovieDetail from "./components/Views/Section/Shared/MovieDetail";
 
 export default
 class App extends React.Component {
@@ -50,6 +51,7 @@ ReactDOM.render(
             <Route path="top_rated" component={TopRated}></Route>
             <Route path="upcoming" component={Upcoming}></Route>
             <Route path="watchlist" component={Watchlist}></Route>
+            <Route path="/movie/:movieId" component={MovieDetail}></Route>
         </Route>
     </Router>,
     document.getElementById('poster-app')
