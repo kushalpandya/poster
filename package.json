@@ -25,7 +25,6 @@
   },
   "homepage": "https://github.com/kushalpandya/poster#readme",
   "dependencies": {
-    "axios": "^0.12.0",
     "history": "^3.0.0",
     "immutable": "^3.8.1",
     "react": "^15.1.0",
