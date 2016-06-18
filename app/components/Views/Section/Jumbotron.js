@@ -34,7 +34,7 @@ class Jumbotron extends React.Component {
 
     render() {
         return (
-            <div class="jumbotron">
+            <div class={"jumbotron " + (this.props.hide ? 'hidden' : '')}>
                 <h2>Welcome to Poster!</h2>
                 <p>A minimalist Movies catelog, powered by <a href="https://www.themoviedb.org" target="_blank">TMDb</a>.</p>
                 <SearchBox handleSearch={this.handleSearch.bind(this)}/>
