@@ -12,9 +12,9 @@
 import React from "react";
 import HTTP from "superagent";
 
-import LoadingMessage from "../../../Widgets/LoadingAnimation";
+import LoadingMessage from "../../Widgets/LoadingAnimation";
 
-import MovieCardList from "../Shared/MovieCardList";
+import MovieCardList from "./Shared/MovieCardList";
 
 export default
 class SearchResults extends React.Component {
