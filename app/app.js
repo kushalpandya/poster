@@ -31,13 +31,18 @@ import Upcoming from "./components/Views/Section/Upcoming/Upcoming";
 import Watchlist from "./components/Views/Section/Watchlist/Watchlist";
 import MovieDetail from "./components/Views/Section/Shared/MovieDetail";
 
+import SearchResults from "./components/Views/Section/Home/SearchResults";
+
 export default
 class App extends React.Component {
     render() {
         return (
             <div>
                 <Header/>
-                {this.props.children}
+                <section class="container poster-section">
+                    <Home/>
+                    {this.props.children}
+                </section>
                 <Footer/>
             </div>
         );
@@ -47,11 +52,11 @@ class App extends React.Component {
 ReactDOM.render(
     <Router history={hashHistory}>
         <Route path="/" component={App}>
-            <IndexRoute component={Home}></IndexRoute>
+            <Route path="search" component={SearchResults}></Route>
             <Route path="top_rated" component={TopRated}></Route>
             <Route path="upcoming" component={Upcoming}></Route>
             <Route path="watchlist" component={Watchlist}></Route>
-            <Route path="/movie/:movieId" component={MovieDetail}></Route>
+            <Route path="movie/:movieId" component={MovieDetail}></Route>
         </Route>
     </Router>,
     document.getElementById('poster-app')
