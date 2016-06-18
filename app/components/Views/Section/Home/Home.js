@@ -10,8 +10,12 @@
  */
 
 import React from "react";
+import HTTP from "superagent";
+
+import LoadingMessage from "../../../Widgets/LoadingAnimation";
 
 import SearchBox from "../Shared/SearchBox";
+import MovieCardList from "../Shared/MovieCardList";
 
 export default
 class Home extends React.Component {
@@ -19,15 +23,29 @@ class Home extends React.Component {
         super();
     }
 
+    handleSearch(query) {
+        this.context.router.push({
+            pathname: 'search',
+            query: {
+                query: query
+            }
+        });
+    }
+
     render() {
         return (
-            <section class="container poster-section home-section">
-                <div class="jumbotron">
-                    <h2>Welcome to Poster!</h2>
-                    <p>A minimalist Movies catelog, powered by <a href="https://www.themoviedb.org" target="_blank">TMDb</a>.</p>
-                    <SearchBox/>
-                </div>
-            </section>
+            <div class="jumbotron">
+                <h2>Welcome to Poster!</h2>
+                <p>A minimalist Movies catelog, powered by <a href="https://www.themoviedb.org" target="_blank">TMDb</a>.</p>
+                <SearchBox handleSearch={this.handleSearch.bind(this)}/>
+            </div>
         );
     }
 }
+
+/*
+ * Declare Context Properties
+ */
+Home.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
