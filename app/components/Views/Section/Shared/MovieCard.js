@@ -68,7 +68,7 @@ class MovieCard extends React.Component {
                         })()}
                     </div>
                     <Link to={moviePermaLink}>
-                        <img class="movie-poster" src={movie.poster_path.small || this.noPosterImage}/>
+                        <img class="movie-poster" src={movie.poster_path.smaller || this.noPosterImage}/>
                     </Link>
                     <Link to={moviePermaLink} class="rating hint--top" aria-label={movie.vote_count + ' Votes'}>
                         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
