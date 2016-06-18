@@ -25,12 +25,12 @@ class Watchlist extends React.Component {
 
     render() {
         return (
-            <section class="container poster-section watchlist-section">
+            <div class="container watchlist-section">
                 <LoadingAnimation
                     visible={!this.state.loadCompleted}
                     loadMessage="Loading your watchlist..."
                 />
-            </section>
+            </div>
         );
     }
 }

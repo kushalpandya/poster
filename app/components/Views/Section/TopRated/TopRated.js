@@ -49,7 +49,7 @@ class TopRated extends React.Component {
 
     render() {
         return (
-            <section class="container poster-section top-rated-section">
+            <div class="container top-rated-section">
                 <LoadingAnimation
                     visible={!this.state.loadCompleted}
                     loadMessage="Loading top rated movies..."
@@ -58,7 +58,7 @@ class TopRated extends React.Component {
                     movies={this.state.movies}
                     visible={this.state.loadCompleted}
                 />
-            </section>
+            </div>
         );
     }
 }

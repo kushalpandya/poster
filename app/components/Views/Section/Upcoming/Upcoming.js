@@ -49,7 +49,7 @@ class Upcoming extends React.Component {
 
     render() {
         return (
-            <section class="container poster-section upcoming-section">
+            <div class="container upcoming-section">
                 <LoadingAnimation
                     visible={!this.state.loadCompleted}
                     loadMessage="Loading upcoming movies..."
@@ -58,7 +58,7 @@ class Upcoming extends React.Component {
                     movies={this.state.movies}
                     visible={this.state.loadCompleted}
                 />
-            </section>
+            </div>
         );
     }
 }
