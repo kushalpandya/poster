@@ -24,7 +24,7 @@ import SearchResults    from "./components/Views/Section/SearchResults";
 import TopRated         from "./components/Views/Section/TopRated/TopRated";
 import Upcoming         from "./components/Views/Section/Upcoming/Upcoming";
 import Watchlist        from "./components/Views/Section/Watchlist/Watchlist";
-import MovieDetail      from "./components/Views/Section/Shared/MovieDetail";
+import MovieDetail      from "./components/Views/Section/MovieDetail/MovieDetail";
 
 ReactDOM.render(
     <Router history={hashHistory}>
