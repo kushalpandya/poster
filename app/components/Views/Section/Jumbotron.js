@@ -6,19 +6,19 @@
  * Date: 13 June, 2016
  * License: MIT
  *
- * Section > Home
+ * Section > Jumbotron
  */
 
 import React from "react";
 import HTTP from "superagent";
 
-import LoadingMessage from "../../../Widgets/LoadingAnimation";
+import LoadingMessage from "../../Widgets/LoadingAnimation";
 
-import SearchBox from "../Shared/SearchBox";
-import MovieCardList from "../Shared/MovieCardList";
+import SearchBox from "./Shared/SearchBox";
+import MovieCardList from "./Shared/MovieCardList";
 
 export default
-class Home extends React.Component {
+class Jumbotron extends React.Component {
     constructor() {
         super();
     }
@@ -46,6 +46,6 @@ class Home extends React.Component {
 /*
  * Declare Context Properties
  */
-Home.contextTypes = {
+Jumbotron.contextTypes = {
     router: React.PropTypes.object.isRequired
 };
