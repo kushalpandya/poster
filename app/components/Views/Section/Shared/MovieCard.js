@@ -16,12 +16,42 @@ export default
 class MovieCard extends React.Component {
     noPosterImage = "dist/assets/images/no_poster.png";
 
+    months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ];
+
     constructor() {
         super();
     }
 
+    truncateTitle(title) {
+        let truncatedTitle;
+
+        if (title.length > 33)
+        return
+    }
+
     render() {
         const movie = this.props.movie;
+        const moviePermaLink = `/movie/${movie.id}`;
+
+        const titleLength = movie.title.length;
+        const truncatedTitle = (titleLength > 33) ? movie.title.substr(0, 28) + '...' : movie.title;
+
+        const releaseDate = new Date(movie.release_date);
+        const releaseDateString = `${releaseDate.getDate()} ${this.months[releaseDate.getMonth()]}, ${releaseDate.getUTCFullYear()}`;
+
         const bannerColor = {
             backgroundColor: movie.backdrop_color
         };
@@ -37,25 +67,36 @@ class MovieCard extends React.Component {
                                 );
                         })()}
                     </div>
-                    <img class="movie-poster" src={movie.poster_path.small || this.noPosterImage}/>
+                    <Link to={moviePermaLink}>
+                        <img class="movie-poster" src={movie.poster_path.small || this.noPosterImage}/>
+                    </Link>
+                    <Link to={moviePermaLink} class="rating hint--top" aria-label={movie.vote_count + ' Votes'}>
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <span class="rate-value" aria-label="Rating">{movie.vote_average}</span>
+                    </Link>
                 </div>
                 <div class="movie-meta">
-                    <Link to={`/movie/${movie.id}`}>
-                        <h4 class="title">{movie.title}</h4>
+                    <Link to={moviePermaLink} class="title">
+                        <h4
+                            class={"title-text " + (titleLength > 33 ? "hint--bottom" : "")}
+                            aria-label={movie.title}
+                        >
+                            {truncatedTitle}
+                        </h4>
                     </Link>
-                    <hr/>
-                    <div class="genre-list">
-                        {/*{
-                            movie.genre_ids.map((genre) => {
-                                return (
-                                    <span class="genre" key={genre}>{genre}</span>
-                                );
-                            })
-                        }*/}
+                    <div class="release-date text-muted">
+                        <span class="glyphicon glyphicon-calendar"></span> {releaseDateString}
                     </div>
+                    <hr/>
                     <p class="overview">{movie.overview}</p>
-                    <div class="rating">{movie.vote_average}</div>
-                    <div class="release-date">{movie.release_date}</div>
+                    <div class="card-actions">
+                        <span class="add-watchlist hint--bottom" aria-label="Add to watchlist">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </span>
+                        <Link to={moviePermaLink} class="more-info">
+                            <span>Explore</span> <em>&#10095;</em>
+                        </Link>
+                    </div>
                 </div>
             </div>
         );
