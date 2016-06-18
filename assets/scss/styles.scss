@@ -9,6 +9,15 @@
  * Main Poster Stylesheet
  */
 
+@mixin clearfix {
+    &:after {
+        content: " ";
+        display: block;
+        height: 0;
+        clear: both;
+    }
+}
+
  html {
     position: relative;
  	min-height: 100%;
@@ -100,12 +109,7 @@
         margin-top: 30px;
         width: 80%;
 
-        &:after {
-            content: " ";
-    		display: block;
-    		height: 0;
-    		clear: both;
-        }
+        @include clearfix;
 
         .movie-item {
             margin: 20px 5px 0 5px;
@@ -134,13 +138,56 @@
                     }
                 }
 
+                .rating,
                 .movie-poster {
                     position: absolute;
+                }
+
+                .rating {
+                    top: 0;
+                    right: 15px;
+                    height: 60px;
+                    width: 40px;
+                    background: #FBC02D;
+                    text-align: center;
+                    border-radius: 0 0 10px 10px;
+                    border: 2px dashed #F57F17;
+                    border-top-width: 0;
+                    box-shadow: 0 0 7px #FFF9C4;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+
+                    .glyphicon,
+                    .rate-value {
+                        display: block;
+                        margin-top: 3px;
+                        color: #FFF;
+                        text-shadow: -1px -1px 0 #F57F17;
+                    }
+
+                    .glyphicon {
+                        font-size: 22px;
+                    }
+
+                    .rate-value {
+                        font-size: 14px;
+                        font-weight: bold;
+                    }
+                }
+
+                .movie-poster {
                     top: 30px;
                     left: 30px;
                     width: 150px;
                     height: 220px;
                     border: 3px solid #FFFFFF;
+                    transition: box-shadow .2s;
+
+                    &:hover {
+                        box-shadow: 0 0 10px #fff;
+                    }
                 }
             }
 
@@ -148,11 +195,31 @@
                 padding: 15px;
 
                 hr {
-                    margin: 15px auto 15px auto;
+                    margin: 12px auto 12px auto;
                 }
 
                 .title {
-                    margin: 0;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+
+                    .title-text {
+                        display: inline-block;
+                        margin: 0;
+                        transition: color .2s;
+
+                        &:hover {
+                            color: #999;
+                        }
+                    }
+                }
+
+                .release-date {
+
+                    .glyphicon {
+                        margin-right: 5px;
+                    }
                 }
 
                 .overview {
@@ -163,6 +230,59 @@
                     text-overflow: ellipsis;
                     -webkit-line-clamp: 3;
                     -webkit-box-orient: vertical;
+                }
+
+                .card-actions {
+                    @include clearfix;
+
+                    .add-watchlist,
+                    .more-info {
+                        line-height: 20px;
+                    }
+
+                    .add-watchlist .glyphicon,
+                    .more-info {
+                        font-size: 20px;
+                        transition: color .2s;
+                    }
+
+                    .add-watchlist {
+                        float: left;
+                        cursor: pointer;
+
+                        .glyphicon {
+                            color: #999;
+
+                            &:hover {
+                                cursor: pointer;
+                                color: #444;
+                            }
+                        }
+                    }
+
+                    .more-info {
+                        float: right;
+                        text-decoration: none;
+                        color: #77b3d4;
+
+                        @include clearfix;
+
+                        &:hover {
+                            color: lighten(#77b3d4, 10%);
+                        }
+
+                        span {
+                            float: left;
+                            margin-top: 1px;
+                            margin-right: 5px;
+                        }
+
+                        em {
+                            float: right;
+                            font-style: normal;
+                            font-size: 18px;
+                        }
+                    }
                 }
             }
 
