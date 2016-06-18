@@ -20,7 +20,7 @@ class MovieDetail extends React.Component {
     render() {
         return (
             <section class="container poster-section movie-details-section">
-                <h1>This is Movie Detail</h1>
+                <h1>This is Movie Detail for ID {this.props.params.movieId}</h1>
             </section>
         );
     }
