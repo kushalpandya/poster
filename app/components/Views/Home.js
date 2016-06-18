@@ -26,7 +26,7 @@ class Home extends React.Component {
             <div>
                 <Header/>
                 <section class="container poster-section">
-                    <Jumbotron/>
+                    <Jumbotron hide={this.props.params.movieId ? true : false}/>
                     {this.props.children}
                 </section>
                 <Footer/>
