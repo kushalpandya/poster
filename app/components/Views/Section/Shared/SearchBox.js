@@ -15,16 +15,39 @@ export default
 class SearchBox extends React.Component {
     constructor() {
         super();
+        this.handleChange = this.handleChange.bind(this);
+        this.handleKeyUp = this.handleKeyUp.bind(this);
+        this.state = {
+            value: ''
+        };
+    }
+
+    handleKeyUp(e) {
+        if (e.which === 13)
+            this.props.handleSearch(this.state.value);
+    }
+
+    handleChange(e) {
+        this.setState({
+            value: e.target.value
+        });
     }
 
     render() {
         return (
-            <form class="input-group">
-                <input type="text" class="form-control" placeholder="Search movies or people..." />
+            <div class="input-group">
+                <input
+                        type="text"
+                        placeholder="Search for a movie..."
+                        class="form-control"
+                        value={this.state.value}
+                        onKeyUp={this.handleKeyUp}
+                        onChange={this.handleChange}
+                />
                 <span class="input-group-btn">
-                    <button class="btn btn-default glyphicon glyphicon-search" type="submit"></button>
+                    <button class="btn btn-default glyphicon glyphicon-search" type="button"></button>
                 </span>
-            </form>
+            </div>
         );
     }
 }
