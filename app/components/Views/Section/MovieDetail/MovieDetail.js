@@ -11,6 +11,7 @@
 
 import React from "react";
 import HTTP from "superagent";
+import Modal from "react-modal";
 
 import LoadingAnimation from "../../../Widgets/LoadingAnimation";
 
@@ -38,6 +39,7 @@ class MovieDetail extends React.Component {
         super();
         this.state = {
             movie: {},
+            openModal: false,
             loadCompleted: false
         }
     }
@@ -60,6 +62,14 @@ class MovieDetail extends React.Component {
 
     componentWillUnmount() {
         this.request.abort();
+    }
+
+    handleClickPoster() {
+        this.setState({openModal: true});
+    }
+
+    handleClickCloseModal() {
+        this.setState({openModal: false});
     }
 
     renderCrewItem(person, i, arr) {
@@ -88,6 +98,21 @@ class MovieDetail extends React.Component {
         );
     }
 
+    renderPosterModal() {
+        const { movie } = this.state;
+
+        return (
+            <Modal
+                isOpen={this.state.openModal}
+                shouldCloseOnOverlayClick={true}
+                onRequestClose={this.handleClickCloseModal.bind(this)}
+                class="poster-modal">
+                <span class="close-modal" onClick={this.handleClickCloseModal.bind(this)}>&times;</span>
+                <img src={movie.poster_path.medium} />
+            </Modal>
+        );
+    }
+
     render() {
         const { movie } = this.state;
         const { credits } = movie;
@@ -107,7 +132,10 @@ class MovieDetail extends React.Component {
                         return (
                             <div class={"row " + (this.state.loadCompleted ? "" : "hidden")}>
                                 <div class="col-md-3 sidebar">
-                                    <img class="movie-poster" src={movie.poster_path.small || this.noPosterImage}/>
+                                    <div class="movie-poster" onClick={this.handleClickPoster.bind(this)}>
+                                        <img src={movie.poster_path.small || this.noPosterImage}/>
+                                        <span class="glyphicon glyphicon-zoom-in"></span>
+                                    </div>
                                     <br/>
                                     <table class="table stats-table">
                                         <tbody>
@@ -204,6 +232,7 @@ class MovieDetail extends React.Component {
                                         </p>
                                     </div>
                                 </div>
+                                {this.renderPosterModal()}
                             </div>
                         );
                 })()}
