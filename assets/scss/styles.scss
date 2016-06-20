@@ -298,6 +298,130 @@
     }
 }
 
+.poster-section {
+
+    .movie-details-section {
+        width: 100%;
+
+        .row {
+            padding: 20px 0 20px 0;
+            background-color: #F7F7F7;
+        }
+    }
+}
+
+.poster-section {
+
+    .movie-details-section {
+
+        .sidebar {
+
+            .movie-poster {
+                display: block;
+                margin: auto;
+            }
+
+            .stats-table {
+
+                .rating {
+                    font-size: 13px;
+                }
+            }
+        }
+
+        .contents {
+
+            .movie-title {
+                @include clearfix;
+
+                .title-text,
+                .release-year {
+                    display: inline-block;
+                    float: left;
+                    margin: 0;
+                }
+
+                .release-year {
+                    margin: 18px 0 0 5px;
+                }
+            }
+
+            hr {
+                margin: 20px 0 20px 0;
+            }
+
+            .movie-synopsis {
+
+                h6 {
+                    margin-top: 8px;
+                    margin-bottom: 8px;
+                    font-weight: bold;
+                }
+
+                .movie-genres {
+
+                    .label {
+                        font-size: 14px;
+                        margin-right: 5px;
+                    }
+                }
+
+                .crew-table,
+                .cast-table {
+                    width: 80%;
+                    margin-bottom: 0;
+
+                    th, td {
+                        padding: 0;
+                        border: none;
+                    }
+
+                    a {
+                        color: darken(#77b3d4, 10%);
+                    }
+                }
+
+                .crew-table {
+
+                    th {
+                        width: 20%;
+                    }
+
+                    td {
+                        width: 80%;
+                    }
+                }
+
+                .cast-table {
+
+                    td {
+                        width: 50%;
+                    }
+
+                    tr:nth-child(n+2) td {
+                        padding-top: 10px;
+                    }
+                }
+
+                .cast-person {
+                    @include clearfix;
+
+                    .person-photo,
+                    .person-title {
+                        display: inline-block;
+                        float: left;
+                    }
+
+                    .person-title {
+                        margin-top: 10px;
+                        margin-left: 30px;
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media (max-width:768px) {
 
     .poster-footer {
