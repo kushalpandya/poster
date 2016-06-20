@@ -317,8 +317,33 @@
         .sidebar {
 
             .movie-poster {
-                display: block;
-                margin: auto;
+                position: relative;
+
+                img {
+                    display: block;
+                    margin: auto;
+                }
+
+                .glyphicon {
+                    visibility: hidden;
+                    position: absolute;
+                    width: 50%;
+                    height: 30%;
+                    top: 0; left: 0; bottom: 0; right: 0;
+                    overflow: hidden;
+                    margin: auto;
+                    text-align: center;
+                    font-size: 6em;
+                    color: rgba(38, 50, 56, 0.52);
+                }
+
+                &:hover {
+                    cursor: pointer;
+
+                    .glyphicon {
+                        visibility: visible;
+                    }
+                }
             }
 
             .stats-table {
@@ -419,6 +444,22 @@
                 }
             }
         }
+    }
+}
+
+.poster-modal {
+    margin: 120px auto 0 auto;
+    outline: none;
+    background: #FFF;
+    width: 396px;
+
+    .close-modal {
+        position: absolute;
+        right: 0;
+        top: 50px;
+        font-size: 4em;
+        line-height: 60px;
+        cursor: pointer;
     }
 }
 
