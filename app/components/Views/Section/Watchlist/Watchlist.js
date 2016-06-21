@@ -11,10 +11,14 @@
 
 import React from "react";
 import HTTP from "superagent";
+import { connect } from "react-redux";
+
+import { getWatchlist } from "../../../../actions/watchlist";
 
 import LoadingAnimation from "../../../Widgets/LoadingAnimation";
+import MovieCardList from "../Shared/MovieCardList";
+import MovieCard from "../Shared/MovieCard";
 
-export default
 class Watchlist extends React.Component {
     constructor() {
         super();
@@ -23,14 +27,46 @@ class Watchlist extends React.Component {
         };
     }
 
+    componentWillMount() {
+        this.props.loadWatchlist();
+    }
+
     render() {
         return (
             <div class="container watchlist-section">
                 <LoadingAnimation
-                    visible={!this.state.loadCompleted}
+                    visible={!this.props.loadCompleted}
                     loadMessage="Loading your watchlist..."
+                />
+                <MovieCardList
+                    movies={this.props.movies}
+                    cardAction="REMOVE"
+                    visible={this.props.loadCompleted}
                 />
             </div>
         );
     }
 }
+
+const stateToProps = (state, ownProps) => {
+    return {
+        loadCompleted: state.watchlist.loadCompleted,
+        movies: state.watchlist.movies
+    };
+}
+
+const dispatchToProps = (dispatch, ownProps) => {
+    return {
+        loadWatchlist: () => {
+            dispatch(getWatchlist());
+            console.log("Watchlist is being loaded!", ownProps);
+        }
+    };
+}
+
+const WatchlistView = connect(
+    stateToProps,
+    dispatchToProps
+)(Watchlist);
+
+export default WatchlistView;
