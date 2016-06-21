@@ -11,8 +11,12 @@
 
 import React from "react";
 import { Link } from "react-router";
+import { connect } from "react-redux";
 
-export default
+import { addMovieToWatchlist, removeMovieFromWatchlist } from "../../../../actions/watchlist";
+
+import ActionButton from "../../../Widgets/ActionButton";
+
 class MovieCard extends React.Component {
     noPosterImage = "dist/assets/images/no_poster.png";
 
@@ -33,13 +37,6 @@ class MovieCard extends React.Component {
 
     constructor() {
         super();
-    }
-
-    truncateTitle(title) {
-        let truncatedTitle;
-
-        if (title.length > 33)
-        return
     }
 
     render() {
@@ -90,9 +87,18 @@ class MovieCard extends React.Component {
                     <hr/>
                     <p class="overview">{movie.overview}</p>
                     <div class="card-actions">
-                        <span class="add-watchlist hint--bottom" aria-label="Add to watchlist">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        </span>
+                        <ActionButton
+                            visible={this.props.action === 'ADD'}
+                            actionHint="Add to watchlist"
+                            actionGlyph="add"
+                            handleClick={this.props.handleAddToWatchlist}
+                        />
+                        <ActionButton
+                            visible={this.props.action === 'REMOVE'}
+                            actionHint="Remove from watchlist"
+                            actionGlyph="remove"
+                            handleClick={this.props.handleRemoveFromWatchlist}
+                        />
                         <Link to={moviePermaLink} class="more-info">
                             <span>Explore</span> <em>&#10095;</em>
                         </Link>
@@ -102,3 +108,24 @@ class MovieCard extends React.Component {
         );
     }
 }
+
+const dispatchToProps = (dispatch, ownProps) => {
+    return {
+        handleAddToWatchlist: () => {
+            dispatch(addMovieToWatchlist(ownProps.movie));
+            console.log("\"%s\" Added to watchlist!", ownProps.movie.title);
+        },
+
+        handleRemoveFromWatchlist: () => {
+            dispatch(removeMovieFromWatchlist(ownProps.movie.id));
+            console.log("\"%s\" Removed from watchlist!", ownProps.movie.title);
+        }
+    };
+}
+
+const MovieCardView = connect(
+    null,
+    dispatchToProps
+)(MovieCard);
+
+export default MovieCardView;
