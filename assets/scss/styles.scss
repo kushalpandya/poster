@@ -235,29 +235,17 @@
                 .card-actions {
                     @include clearfix;
 
-                    .add-watchlist,
                     .more-info {
                         line-height: 20px;
                     }
 
-                    .add-watchlist .glyphicon,
                     .more-info {
                         font-size: 20px;
                         transition: color .2s;
                     }
 
-                    .add-watchlist {
+                    .action-button {
                         float: left;
-                        cursor: pointer;
-
-                        .glyphicon {
-                            color: #999;
-
-                            &:hover {
-                                cursor: pointer;
-                                color: #444;
-                            }
-                        }
                     }
 
                     .more-info {
@@ -460,6 +448,30 @@
         font-size: 4em;
         line-height: 60px;
         cursor: pointer;
+    }
+}
+
+.action-button {
+    cursor: pointer;
+
+    .glyphicon {
+        font-size: 20px;
+        line-height: 20px;
+        color: #999;
+        transition: color .2s;
+
+        &:hover {
+            cursor: pointer;
+            color: #444;
+        }
+    }
+
+    .glyphicon-remove {
+        color: #F44336;
+    }
+
+    .glyphicon-ok {
+        color: #8BC34A;
     }
 }
 
