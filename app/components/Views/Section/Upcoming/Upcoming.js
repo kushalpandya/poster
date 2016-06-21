@@ -56,6 +56,7 @@ class Upcoming extends React.Component {
                 />
                 <MovieCardList
                     movies={this.state.movies}
+                    cardAction="ADD"
                     visible={this.state.loadCompleted}
                 />
             </div>
