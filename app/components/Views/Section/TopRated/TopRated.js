@@ -10,7 +10,9 @@
  */
 
 import React from "react";
-import HTTP from "superagent";
+import { connect } from "react-redux";
+
+import { PosterAction, loadMovies } from "../../../../actions/poster";
 
 import LoadingAnimation from "../../../Widgets/LoadingAnimation";
 
@@ -19,47 +21,55 @@ import MovieCard from "../Shared/MovieCard";
 
 export default
 class TopRated extends React.Component {
-    baseURL = "http://localhost:9000/api";
-
     constructor() {
         super();
-        this.state = {
-            movies: [],
-            loadCompleted: false
-        }
     }
 
     componentWillMount() {
-        this.request = HTTP.get(`${this.baseURL}/movie/top_rated`).end((err, res) => {
-            if (err || !res.ok)
-                console.log("Something went wrong", err);
-            else
-            {
-                this.setState({
-                    loadCompleted: true,
-                    movies: res.body.results
-                })
-            }
-        });
+        if (!this.props.loadCompleted)
+            this.request = this.props.loadTopRated();
     }
 
     componentWillUnmount() {
-        this.request.abort();
+        if (!this.props.loadCompleted)
+            this.request.abort();
     }
 
     render() {
         return (
             <div class="container top-rated-section">
                 <LoadingAnimation
-                    visible={!this.state.loadCompleted}
+                    visible={!this.props.loadCompleted}
                     loadMessage="Loading top rated movies..."
                 />
                 <MovieCardList
-                    movies={this.state.movies}
+                    movies={this.props.movies}
                     cardAction="ADD"
-                    visible={this.state.loadCompleted}
+                    visible={this.props.loadCompleted}
                 />
             </div>
         );
     }
 }
+
+const stateToProps = (state, ownProps) => {
+    return {
+        loadCompleted: state.poster.loadTopRatedCompleted,
+        movies: state.poster.topRatedMovies
+    };
+}
+
+const dispatchToProps = (dispatch, ownProps) => {
+    return {
+        loadTopRated: () => {
+            return dispatch(loadMovies(PosterAction.GET_TOP_RATED));
+        }
+    };
+}
+
+const TopRatedView = connect(
+    stateToProps,
+    dispatchToProps
+)(TopRated);
+
+export default TopRatedView;
