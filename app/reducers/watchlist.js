@@ -27,10 +27,7 @@ const watchlist = (state = initialState, action) => {
                 });
 
                 if (!foundInWatchlist)
-                {
                     newState.movies.push(action.movie);
-                    newState.isInWatchlist = true;
-                }
 
                 return newState;
             }
