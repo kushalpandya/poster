@@ -10,7 +10,6 @@
  */
 
 import React from "react";
-import HTTP from "superagent";
 import { connect } from "react-redux";
 
 import { getWatchlist } from "../../../../actions/watchlist";
@@ -22,9 +21,6 @@ import MovieCard from "../Shared/MovieCard";
 class Watchlist extends React.Component {
     constructor() {
         super();
-        this.state = {
-            loadCompleted: false
-        };
     }
 
     componentWillMount() {
