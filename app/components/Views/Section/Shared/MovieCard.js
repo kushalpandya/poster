@@ -13,7 +13,7 @@ import React from "react";
 import { Link } from "react-router";
 import { connect } from "react-redux";
 
-import { addMovieToWatchlist, removeMovieFromWatchlist } from "../../../../actions/watchlist";
+import { addToWatchlist, removeFromWatchlist } from "../../../../actions/poster";
 
 import ActionButton from "../../../Widgets/ActionButton";
 
@@ -53,6 +53,8 @@ class MovieCard extends React.Component {
             backgroundColor: movie.backdrop_color
         };
 
+        movie.watchlist = movie.watchlist || this.props.watchlisted;
+
         return (
             <div class="movie-item">
                 <div class="movie-banner">
@@ -88,13 +90,18 @@ class MovieCard extends React.Component {
                     <p class="overview">{movie.overview}</p>
                     <div class="card-actions">
                         <ActionButton
-                            visible={this.props.action === 'ADD'}
+                            visible={this.props.action === 'ADD' && !movie.watchlist}
                             actionHint="Add to watchlist"
                             actionGlyph="add"
                             handleClick={this.props.handleAddToWatchlist}
                         />
                         <ActionButton
-                            visible={this.props.action === 'REMOVE'}
+                            visible={this.props.action !== 'REMOVE' && movie.watchlist}
+                            actionHint="Added to watchlist"
+                            actionGlyph="added"
+                        />
+                        <ActionButton
+                            visible={this.props.action === 'REMOVE' && movie.watchlist}
                             actionHint="Remove from watchlist"
                             actionGlyph="remove"
                             handleClick={this.props.handleRemoveFromWatchlist}
@@ -109,22 +116,38 @@ class MovieCard extends React.Component {
     }
 }
 
+const stateToProps = (state, ownProps) => {
+    let isWatchlisted;
+
+    if (state.poster.movie)
+    {
+        if (state.poster.movie.id === ownProps.movie.id)
+            isWatchlisted = state.poster.movie.watchlist;
+        else
+            isWatchlisted = ownProps.movie.watchlist;
+    }
+    else
+        isWatchlisted = ownProps.movie.watchlist;
+
+    return {
+        watchlisted: isWatchlisted
+    };
+}
+
 const dispatchToProps = (dispatch, ownProps) => {
     return {
         handleAddToWatchlist: () => {
-            dispatch(addMovieToWatchlist(ownProps.movie));
-            console.log("\"%s\" Added to watchlist!", ownProps.movie.title);
+            dispatch(addToWatchlist(ownProps.movie));
         },
 
         handleRemoveFromWatchlist: () => {
-            dispatch(removeMovieFromWatchlist(ownProps.movie.id));
-            console.log("\"%s\" Removed from watchlist!", ownProps.movie.title);
+            dispatch(removeFromWatchlist(ownProps.movie.id));
         }
     };
 }
 
 const MovieCardView = connect(
-    null,
+    stateToProps,
     dispatchToProps
 )(MovieCard);
 
