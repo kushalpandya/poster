@@ -12,7 +12,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { getWatchlist } from "../../../../actions/watchlist";
+import { PosterAction, loadMovies } from "../../../../actions/poster";
 
 import LoadingAnimation from "../../../Widgets/LoadingAnimation";
 import MovieCardList from "../Shared/MovieCardList";
@@ -24,7 +24,13 @@ class Watchlist extends React.Component {
     }
 
     componentWillMount() {
-        this.props.loadWatchlist();
+        if (!this.props.loadCompleted)
+            this.request = this.props.loadWatchlist();
+    }
+
+    componentWillUnmount() {
+        if (!this.props.loadCompleted)
+            this.request.abort();
     }
 
     render() {
@@ -46,16 +52,15 @@ class Watchlist extends React.Component {
 
 const stateToProps = (state, ownProps) => {
     return {
-        loadCompleted: state.watchlist.loadCompleted,
-        movies: state.watchlist.movies
+        loadCompleted: state.poster.loadWatchlistCompleted,
+        movies: state.poster.watchlistMovies
     };
 }
 
 const dispatchToProps = (dispatch, ownProps) => {
     return {
         loadWatchlist: () => {
-            dispatch(getWatchlist());
-            console.log("Watchlist is being loaded!", ownProps);
+            return dispatch(loadMovies(PosterAction.GET_WATCHLIST));
         }
     };
 }
