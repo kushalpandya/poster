@@ -11,11 +11,9 @@
 
 import { combineReducers } from "redux";
 
-import watchlistReducer from "./watchlist";
 import posterReducer    from "./poster";
 
 let posterApp = combineReducers({
-    watchlist: watchlistReducer,
     poster: posterReducer
 });
 
