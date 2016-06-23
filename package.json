@@ -4,7 +4,8 @@
   "description": "A React webapp to list upcoming movies and maintain a watchlist, powered by TMDb",
   "main": "webpack.config.js",
   "scripts": {
-    "build": "grunt build",
+    "postinstall": "grunt build",
+    "start": "grunt serve",
     "webpackbuild": "webpack",
     "webpackserve": "webpack-dev-server --output-public-path dist/ --inline --hot --port 4000",
     "test": "echo \"Error: no test specified\" && exit 1"
