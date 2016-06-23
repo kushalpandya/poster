@@ -14,8 +14,10 @@ import { PosterAction } from "../actions/poster";
 const initialState = {
     loadTopRatedCompleted: false,
     loadUpcomingCompleted: false,
+    loadWatchlistCompleted: false,
     topRatedMovies: [],
-    upcomingMovies: []
+    upcomingMovies: [],
+    watchlistMovies: []
 };
 
 const poster = (state = initialState, action) => {
@@ -35,6 +37,36 @@ const poster = (state = initialState, action) => {
                 let newState = Object.assign({}, state);
                 newState.upcomingMovies = action.movies;
                 newState.loadUpcomingCompleted = true;
+
+                return newState;
+            }
+
+        case PosterAction.GET_WATCHLIST:
+            {
+                let newState = Object.assign({}, state);
+                newState.watchlistMovies = action.movies;
+                newState.loadWatchlistCompleted = true;
+
+                return newState;
+            }
+
+        case PosterAction.ADD_MOVIE_WATCHLIST:
+            {
+                let newState = Object.assign({}, state);
+                newState.movie = action.movie;
+                newState.loadWatchlistCompleted = false;
+
+                return newState;
+            }
+
+        case PosterAction.REMOVE_MOVIE_WATCHLIST:
+            {
+                let newState = Object.assign({}, state);
+                newState.watchlistMovies = newState.watchlistMovies.filter(function(movie) {
+                    return movie.id !== action.movieId;
+                });
+                newState.loadTopRatedCompleted = false;
+                newState.loadUpcomingCompleted = false;
 
                 return newState;
             }
