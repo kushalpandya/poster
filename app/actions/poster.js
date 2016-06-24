@@ -14,10 +14,11 @@ import HTTP from "superagent";
 const API_URL = "http://localhost:9000/api";
 
 const END_POINTS = {
-    GET_TOP_RATED: '/movie/top_rated',
-    GET_UPCOMING: '/movie/upcoming',
-    GET_WATCHLIST: '/watchlist',
-    ADD_MOVIE_WATCHLIST: '/watchlist',
+    GET_TOP_RATED:          '/movie/top_rated',
+    GET_UPCOMING:           '/movie/upcoming',
+    SEARCH:                 '/movie/search',
+    GET_WATCHLIST:          '/watchlist',
+    ADD_MOVIE_WATCHLIST:    '/watchlist',
     REMOVE_MOVIE_WATCHLIST: '/watchlist'
 };
 
@@ -25,10 +26,12 @@ const END_POINTS = {
  * Action Types
  */
 export const PosterAction = {
-    GET_TOP_RATED: 'GET_TOP_RATED',
-    GET_UPCOMING: 'GET_UPCOMING',
-    GET_WATCHLIST: 'GET_WATCHLIST',
-    ADD_MOVIE_WATCHLIST: 'ADD_MOVIE',
+    GET_TOP_RATED:          'GET_TOP_RATED',
+    GET_UPCOMING:           'GET_UPCOMING',
+    GET_WATCHLIST:          'GET_WATCHLIST',
+    SEARCH:                 'SEARCH',
+    SEARCH_COMPLETE:        'SEARCH_COMPLETE',
+    ADD_MOVIE_WATCHLIST:    'ADD_MOVIE',
     REMOVE_MOVIE_WATCHLIST: 'REMOVE_MOVIE'
 };
 
@@ -54,6 +57,19 @@ export const getWatchlistMovies = (movies) => {
         type: PosterAction.GET_WATCHLIST,
         movies
     }
+}
+
+export const doSearch = () => {
+    return {
+        type: PosterAction.SEARCH
+    };
+}
+
+export const getSearchMovies = (movies) => {
+    return {
+        type: PosterAction.SEARCH_COMPLETE,
+        movies
+    };
 }
 
 export const addMovieToWatchlist = (movie) => {
@@ -103,6 +119,20 @@ export const loadMovies = (type) => {
                                     }
                                 }
                             });
+}
+
+export const loadSearch = (query) => {
+    return (dispatch) => {
+        dispatch(doSearch());
+        return  HTTP.get(`${API_URL}${END_POINTS.SEARCH}`)
+                    .query({ query: query })
+                    .end((err, res) => {
+                        if (err || !res.ok)
+                            console.log("Something went wrong while getting /api%s! ", END_POINTS.SEARCH, err);
+                        else
+                            dispatch(getSearchMovies(res.body.results));
+                    });
+    };
 }
 
 /**
