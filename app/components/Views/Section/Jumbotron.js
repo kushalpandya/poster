@@ -10,7 +10,6 @@
  */
 
 import React from "react";
-import HTTP from "superagent";
 
 import LoadingMessage from "../../Widgets/LoadingAnimation";
 
@@ -23,29 +22,13 @@ class Jumbotron extends React.Component {
         super();
     }
 
-    handleSearch(query) {
-        this.context.router.push({
-            pathname: 'search',
-            query: {
-                query: query
-            }
-        });
-    }
-
     render() {
         return (
             <div class={"jumbotron " + (this.props.hide ? 'hidden' : '')}>
                 <h2>Welcome to Poster!</h2>
                 <p>A minimalist Movies catalog, powered by <a href="https://www.themoviedb.org" target="_blank">TMDb</a>.</p>
-                <SearchBox handleSearch={this.handleSearch.bind(this)}/>
+                <SearchBox handleSearch={this.props.handleSearch}/>
             </div>
         );
     }
 }
-
-/*
- * Declare Context Properties
- */
-Jumbotron.contextTypes = {
-    router: React.PropTypes.object.isRequired
-};
