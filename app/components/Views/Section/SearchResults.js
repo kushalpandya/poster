@@ -10,52 +10,24 @@
  */
 
 import React from "react";
-import HTTP from "superagent";
+import { connect } from "react-redux";
+
+import { PosterAction, loadSearch } from "../../../actions/poster";
 
 import LoadingMessage from "../../Widgets/LoadingAnimation";
 
 import MovieCardList from "./Shared/MovieCardList";
 
-export default
 class SearchResults extends React.Component {
-    baseURL = "http://localhost:9000/api";
-
     constructor() {
         super();
-        this.state = {
-            searchActive: true,
-            showSearchResults: false,
-            movies: []
-        };
     }
 
     componentWillMount() {
         const { query } = this.props.location.query;
 
-        this.setState({
-            searchActive: true,
-            showSearchResults: false
-        });
-
-        this.request = HTTP
-                        .get(`${this.baseURL}/movie/search`)
-                        .query({ query: query })
-                        .end((err, res) => {
-                            if (err || !res.ok)
-                                console.log("Something went wrong", err);
-                            else
-                            {
-                                this.setState({
-                                    searchActive: false,
-                                    showSearchResults: true,
-                                    movies: res.body.results
-                                });
-                            }
-                        });
-    }
-
-    componentWillUnmount() {
-        this.request.abort();
+        if (!this.props.loadCompleted)
+            this.props.loadSearch(query);
     }
 
     render() {
@@ -65,14 +37,36 @@ class SearchResults extends React.Component {
         return (
             <div class="container search-results">
                 <LoadingMessage
-                    visible={this.state.searchActive}
+                    visible={!this.props.loadCompleted}
                     loadMessage={loadMessage}
                 />
                 <MovieCardList
-                    visible={this.state.showSearchResults}
-                    movies={this.state.movies}
+                    visible={this.props.loadCompleted}
+                    movies={this.props.movies}
                 />
         </div>
         );
     }
 }
+
+const stateToProps = (state, ownProps) => {
+    return {
+        loadCompleted: state.poster.loadSearchResultsCompleted,
+        movies: state.poster.searchResults
+    };
+}
+
+const dispatchToProps = (dispatch, ownProps) => {
+    return {
+        loadSearch: (query) => {
+            return dispatch(loadSearch(query));
+        }
+    };
+}
+
+const SearchResultsView = connect(
+    stateToProps,
+    dispatchToProps
+)(SearchResults);
+
+export default SearchResultsView;
