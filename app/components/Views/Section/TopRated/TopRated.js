@@ -19,7 +19,6 @@ import LoadingAnimation from "../../../Widgets/LoadingAnimation";
 import MovieCardList from "../Shared/MovieCardList";
 import MovieCard from "../Shared/MovieCard";
 
-export default
 class TopRated extends React.Component {
     constructor() {
         super();
