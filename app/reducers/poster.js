@@ -15,9 +15,11 @@ const initialState = {
     loadTopRatedCompleted: false,
     loadUpcomingCompleted: false,
     loadWatchlistCompleted: false,
+    loadSearchResultsCompleted: false,
     topRatedMovies: [],
     upcomingMovies: [],
-    watchlistMovies: []
+    watchlistMovies: [],
+    searchResults: []
 };
 
 const poster = (state = initialState, action) => {
@@ -46,6 +48,24 @@ const poster = (state = initialState, action) => {
                 let newState = Object.assign({}, state);
                 newState.watchlistMovies = action.movies;
                 newState.loadWatchlistCompleted = true;
+
+                return newState;
+            }
+
+        case PosterAction.SEARCH:
+            {
+                let newState = Object.assign({}, state);
+                newState.searchResults = [];
+                newState.loadSearchResultsCompleted = false;
+
+                return newState;
+            }
+
+        case PosterAction.SEARCH_COMPLETE:
+            {
+                let newState = Object.assign({}, state);
+                newState.searchResults = action.movies;
+                newState.loadSearchResultsCompleted = true;
 
                 return newState;
             }
