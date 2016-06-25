@@ -19,6 +19,7 @@ export default
 class MovieDetail extends React.Component {
     baseURL = "http://localhost:9000/api";
     noPosterImage = "dist/assets/images/no_poster.png";
+    noProfileImage = "dist/assets/images/no_profile.png";
 
     months = [
         "January",
@@ -65,7 +66,8 @@ class MovieDetail extends React.Component {
     }
 
     handleClickPoster() {
-        this.setState({openModal: true});
+        if (this.state.movie.poster_path.medium)
+            this.setState({openModal: true});
     }
 
     handleClickCloseModal() {
@@ -88,11 +90,11 @@ class MovieDetail extends React.Component {
         return (
             <div class="cast-person">
                 <span class="person-photo">
-                    <img src={person.profile_path.smaller}/>
+                    <img src={person.profile_path.smaller || this.noProfileImage}/>
                 </span>
                 <span class="person-title">
                     <a href={`${personPermaLink}${person.id}`} class="person-name" target="_blank">{person.name}</a>
-                    <div class="person-char">as <i>{person.character}</i></div>
+                    <div class="person-char">as <i>{person.character || 'NA'}</i></div>
                 </span>
             </div>
         );
@@ -134,7 +136,7 @@ class MovieDetail extends React.Component {
                                 <div class="col-md-3 sidebar">
                                     <div class="movie-poster" onClick={this.handleClickPoster.bind(this)}>
                                         <img src={movie.poster_path.small || this.noPosterImage}/>
-                                        <span class="glyphicon glyphicon-zoom-in"></span>
+                                        <span class={"glyphicon glyphicon-zoom-in " + (!movie.poster_path.medium ? 'hidden' : '')}></span>
                                     </div>
                                     <br/>
                                     <table class="table stats-table">
@@ -176,7 +178,7 @@ class MovieDetail extends React.Component {
                                         <h6>Genres</h6>
                                         <p class="movie-genres">
                                             {
-                                                movie.genres.map(function(genre, i) {
+                                                movie.genres.map((genre, i) => {
                                                     return (
                                                         <span class="label label-success" key={genre.id}>{genre.name}</span>
                                                     );
@@ -205,28 +207,25 @@ class MovieDetail extends React.Component {
                                         <br/>
                                         <br/>
                                         <h6>Actors</h6>
-                                        <table class="table cast-table">
-                                            <tbody>
-                                                <tr>
-                                                    <td>{this.renderCastItem(credits.actors[0])}</td>
-                                                    <td>{this.renderCastItem(credits.actors[1])}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>{this.renderCastItem(credits.actors[2])}</td>
-                                                    <td>{this.renderCastItem(credits.actors[3])}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <div class="cast-items">
+                                            {
+                                                credits.actors.map((actor) => {
+                                                    return (
+                                                        <div class="cast-member" key={actor.id}>{this.renderCastItem(actor)}</div>
+                                                    );
+                                                })
+                                            }
+                                        </div>
                                         <a href={crewPermaLink + '#cast'} target="_blank">Show all &rarr;</a>
                                         <br/>
                                         <br/>
                                         <h6>Production Company</h6>
                                         <p>
                                             {
-                                                movie.production_companies.map(function(company, i, arr) {
+                                                movie.production_companies.map((company, i, arr) => {
                                                     return (
                                                         <a href={`https://www.themoviedb.org/company/${company.id}`} target="_blank" key={company.id}>{company.name}{i < arr.length - 1 ? ', ' : ''}</a>
-                                                    )
+                                                    );
                                                 })
                                             }
                                         </p>
