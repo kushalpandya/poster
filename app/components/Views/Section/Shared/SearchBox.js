@@ -17,6 +17,7 @@ class SearchBox extends React.Component {
         super();
         this.handleChange = this.handleChange.bind(this);
         this.handleKeyUp = this.handleKeyUp.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.state = {
             value: ''
         };
@@ -33,6 +34,10 @@ class SearchBox extends React.Component {
         });
     }
 
+    handleClick(e) {
+        this.props.handleSearch(this.state.value);
+    }
+
     render() {
         return (
             <div class="input-group">
@@ -45,7 +50,12 @@ class SearchBox extends React.Component {
                         onChange={this.handleChange}
                 />
                 <span class="input-group-btn">
-                    <button class="btn btn-default glyphicon glyphicon-search" type="button"></button>
+                    <button
+                        class="btn btn-default glyphicon glyphicon-search"
+                        type="button"
+                        onClick={this.handleClick}
+                    >
+                    </button>
                 </span>
             </div>
         );
