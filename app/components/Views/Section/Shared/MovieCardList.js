@@ -21,14 +21,17 @@ class MovieCardList extends React.Component {
 
     render() {
         return (
-            <div class={"movies-list " + (this.props.visible ? '' : 'hidden')}>
-                {
-                    this.props.movies.map((movie, i) => {
-                        return (
-                            <MovieCard key={movie.id} movie={movie} action={this.props.cardAction} />
-                        );
-                    })
-                }
+            <div class={"movies-list-container " + (this.props.visible ? '' : 'hidden')}>
+                <div class="movies-list">
+                    {
+                        this.props.movies.map((movie, i) => {
+                            return (
+                                <MovieCard key={movie.id} movie={movie} action={this.props.cardAction} />
+                            );
+                        })
+                    }
+                </div>
+                <h3 class={"movies-list-empty text-muted " + (this.props.movies.length ? 'hidden' : '')}>No movies found!</h3>
             </div>
         );
     }
