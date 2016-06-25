@@ -284,6 +284,10 @@
             }
         }
     }
+
+    .movies-list-empty {
+        text-align: center;
+    }
 }
 
 .poster-section {
@@ -380,14 +384,9 @@
                 }
 
                 .crew-table,
-                .cast-table {
+                .cast-items {
                     width: 80%;
                     margin-bottom: 0;
-
-                    th, td {
-                        padding: 0;
-                        border: none;
-                    }
 
                     a {
                         color: darken(#77b3d4, 10%);
@@ -395,6 +394,11 @@
                 }
 
                 .crew-table {
+
+                    th, td {
+                        padding: 0;
+                        border: none;
+                    }
 
                     th {
                         width: 20%;
@@ -405,14 +409,10 @@
                     }
                 }
 
-                .cast-table {
+                .cast-items {
 
-                    td {
-                        width: 50%;
-                    }
-
-                    tr:nth-child(n+2) td {
-                        padding-top: 10px;
+                    .cast-member:nth-child(n+1) {
+                        margin-bottom: 15px;
                     }
                 }
 
@@ -436,7 +436,7 @@
 }
 
 .poster-modal {
-    margin: 120px auto 0 auto;
+    margin: 5% auto 0 auto;
     outline: none;
     background: #FFF;
     width: 396px;
