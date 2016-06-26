@@ -36,6 +36,22 @@ Development-time dependencies of Poster includes:
 - [SASS](http://sass-lang.com/): CSS of Poster is written in SASS (with `libsass`).
 - [Webpack](https://webpack.github.io/): For Project bundling.
 
+###Screenshots
+Poster Homepage
+![Poster Homepage](https://i.imgur.com/zrLfMbb.png "Poster Homepage")
+
+Top 20 Movies
+![Top 20 Movies](https://i.imgur.com/xSm1vl7.png "Top 20 Movies")
+
+Upcoming Movies
+![Upcoming Movies](https://i.imgur.com/WJ5BtWj.png "Upcoming Movies")
+
+Watchlist
+![Watchlist](https://i.imgur.com/LvUfmVd.png "Watchlist")
+
+Movie Details
+![Movie Details](https://i.imgur.com/5J2hTG8.png "Movie Details")
+
 ###Usage
 First, make sure you have Poster Server configured and running and then proceed.
 
