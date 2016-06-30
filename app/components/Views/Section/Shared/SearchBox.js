@@ -35,7 +35,8 @@ class SearchBox extends React.Component {
     }
 
     handleClick(e) {
-        this.props.handleSearch(this.state.value);
+        if (this.state.value)
+            this.props.handleSearch(this.state.value);
     }
 
     render() {
