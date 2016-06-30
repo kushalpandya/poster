@@ -24,7 +24,8 @@ class SearchBox extends React.Component {
     }
 
     handleKeyUp(e) {
-        if (e.which === 13)
+        if (e.which === 13 &&
+            this.state.value)
             this.props.handleSearch(this.state.value);
     }
 
