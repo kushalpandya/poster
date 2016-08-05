@@ -1,5 +1,6 @@
 Poster
 ======================
+[![Build Status](https://travis-ci.org/kushalpandya/poster.svg?branch=master)](https://travis-ci.org/kushalpandya/poster)
 
 A React + Redux webapp to list Movies and maintain a Watchlist, powered by TMDb.
 
