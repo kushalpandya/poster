@@ -5,7 +5,7 @@ Poster
 
 A React + Redux webapp to list Movies and maintain a Watchlist, powered by TMDb.
 
-###Idea
+### Idea
 I have been developing single-page webapps professionally for more than 3 years (mainly in ExtJS and occasionally in AngularJS as well as plain JS).
 
 Poster is my attempt to create single page webapp to learn React and Redux end-to-end. On my quest to learn React, I encountered several sources on the web, some of which helped (linked below) and some of which confused me. Over 90% of those tutorials taught how to build "Todo" app in React, but we don't build such Todo apps in real-life (unless you're author of Wunderlist or AnyDo or Google Keep or one of those million apps available on App Store).
@@ -38,7 +38,7 @@ Development-time dependencies of Poster includes:
 - [SASS](http://sass-lang.com/): CSS of Poster is written in SASS (with `libsass`).
 - [Webpack](https://webpack.github.io/): For Project bundling.
 
-###Screenshots
+### Screenshots
 Poster Homepage
 ![Poster Homepage](https://i.imgur.com/zrLfMbb.png "Poster Homepage")
 
@@ -54,7 +54,7 @@ Watchlist
 Movie Details
 ![Movie Details](https://i.imgur.com/5J2hTG8.png "Movie Details")
 
-###Usage
+### Usage
 First, make sure you have Poster Server configured and running and then proceed.
 
 Download the tarball and extract it or clone the repo, and run `npm install` to build the project and then run `npm start` to start server, this will start [Webpack Dev Server](https://webpack.github.io/docs/webpack-dev-server.html) in `development` mode at port `4000` with source-maps and hot module replacement support (you can change it from `package.json`'s `scripts > webpackserve`'s value).
@@ -93,6 +93,6 @@ Learning React as a beginner was fun, I'm specially thankful to authors behind f
 - [React Presentation](https://github.com/bradwestfall/react-presentation) by Brad Westfall for covering React and Redux in an hour-long session.
 - [Circle Icons](https://www.iconfinder.com/iconsets/circle-icons-1) by Nick Roach.
 
-###Author
+### Author
 ---
 [Kushal Pandya](https://doublslash.com)
